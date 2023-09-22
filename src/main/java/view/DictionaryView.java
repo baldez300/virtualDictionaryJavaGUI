@@ -15,7 +15,7 @@ public class DictionaryView extends Application {
     private Label meaningLabel;
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage window) {
         controller = new DictionaryController(); // Use the controller
 
         // Initialize JavaFX components
@@ -26,17 +26,18 @@ public class DictionaryView extends Application {
         // Define layout
         VBox root = new VBox(10);
         root.getChildren().addAll(wordInput, searchButton, meaningLabel);
-        Scene scene = new Scene(root, 300, 200);
+        Scene view = new Scene(root, 300, 200);
 
         // Add event handler for the search button
         searchButton.setOnAction(event -> searchWord());
 
         // Set the stage
-        primaryStage.setTitle("Virtual Dictionary");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        window.setTitle("Virtual Dictionary");
+        window.setScene(view);
+        window.show();
     }
 
+    // Method to search for a word in the dictionary and retrieve its meaning
     private void searchWord() {
         String word = wordInput.getText();
         String meaning = controller.searchWord(word); // Pass the word to the controller
